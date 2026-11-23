@@ -1,0 +1,102 @@
+/* RestoPOS — calmer, more refined look (loaded after app.css).  Softer colour, quieter borders, layered shadows, tactile depth on dishes and tables. */
+:root {
+  --bg: #f3f2ef; --surface: #fff; --surface-2: #f7f6f3; --line: #e6e3dd; --ink: #1d2027; --ink-2: #51565f; --ink-3: #868a93;
+  --accent: #b98b3e; --accent-ink: #fff;
+  --ok-bg: #eaf4ee; --warn-bg: #faf1de; --bad-bg: #f8e9e6; --info-bg: #e9eff9;
+  --ok: #2f7d57; --warn: #94621a; --bad: #a23b32; --info: #3a64b0;
+  --free: #9aa0aa; --busy: #3a64b0; --ready: #2f7d57; --bill: #94621a; --attn: #a23b32;
+  --r: 14px; --r-sm: 10px; --r-lg: 20px;
+  --shadow: 0 1px 1px rgba(40,34,24,.04), 0 2px 6px rgba(40,34,24,.05), 0 10px 24px -14px rgba(40,34,24,.18);
+  --shadow-lift: 0 2px 2px rgba(40,34,24,.05), 0 8px 18px rgba(40,34,24,.09), 0 22px 36px -18px rgba(40,34,24,.28);
+}
+:root[data-theme=dark] {
+  --bg: #121419; --surface: #1a1e26; --surface-2: #20252f; --line: #2c323d; --ink: #e9ebf0; --ink-2: #b0b6c3; --ink-3: #7e8593;
+  --accent: #c79a4c; --accent-ink: #1b1405;
+  --ok-bg: #16281f; --warn-bg: #2b2414; --bad-bg: #2d1a18; --info-bg: #17223a;
+  --shadow: 0 1px 1px rgba(0,0,0,.3), 0 6px 16px -8px rgba(0,0,0,.55); --shadow-lift: 0 10px 28px -8px rgba(0,0,0,.65);
+}
+body { background: radial-gradient(1200px 600px at 20% -10%, color-mix(in srgb, var(--brand) 5%, transparent), transparent), var(--bg); }
+h1, h2, h3 { font-weight: 600; letter-spacing: -.005em }
+h1 { font-weight: 650 }
+.topbar { background: color-mix(in srgb, var(--brand) 88%, #2b2f38); box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 4px 14px -8px rgba(0,0,0,.4) }
+
+/* buttons: quiet by default, the brand colour only on the main action */
+.btn { font-weight: 550; border-color: var(--line); box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 1px 2px rgba(40,34,24,.05); transition: background .15s, box-shadow .15s, transform .08s }
+.btn:hover { box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 3px 8px -4px rgba(40,34,24,.2) }
+.btn.primary { background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 92%, #fff), color-mix(in srgb, var(--brand) 82%, #25282f)); border-color: color-mix(in srgb, var(--brand) 70%, #000); color: #fff; box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 4px 10px -6px color-mix(in srgb, var(--brand) 70%, #000) }
+.btn.primary:hover { background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 96%, #fff), color-mix(in srgb, var(--brand) 86%, #25282f)) }
+.btn.ok { background: var(--ok); border-color: var(--ok) } .btn.danger { background: var(--bad); border-color: var(--bad) }
+.chip, .cat { font-weight: 550 }
+.cat.on { background: color-mix(in srgb, var(--brand) 90%, #2b2f38); border-color: transparent; box-shadow: 0 4px 10px -6px var(--brand) }
+.card, .panel { border-color: color-mix(in srgb, var(--line) 80%, transparent) }
+.modal { border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); box-shadow: 0 30px 70px -20px rgba(30,24,14,.45), 0 2px 6px rgba(30,24,14,.08) }
+#modal-root .modal-wrap { background: rgba(28,24,18,.42); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px) }
+input, select, textarea { border-color: var(--line) }
+.badge { font-weight: 550 }
+.change-box { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .8rem 1rem; border-radius: var(--r); background: linear-gradient(180deg, var(--ok-bg), color-mix(in srgb, var(--ok-bg) 70%, var(--surface))); border: 1px solid color-mix(in srgb, var(--ok) 28%, transparent) }
+.change-box b { font-size: 1.9rem; font-weight: 650; color: var(--ok); font-variant-numeric: tabular-nums }
+
+/* ── dishes: tactile cards, softly lit photos ── */
+.it { border-color: color-mix(in srgb, var(--line) 70%, transparent); border-radius: 18px; box-shadow: var(--shadow); transition: transform .18s cubic-bezier(.2,.7,.3,1), box-shadow .18s; background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--surface) 94%, var(--bg))) }
+@media (hover: hover) { .it:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift) } .it:hover .ph img { transform: scale(1.06) } }
+.it:active { transform: scale(.985) }
+.it .ph { position: relative; aspect-ratio: 4/3; background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--brand) 18%, var(--surface-2)), var(--surface-2)); isolation: isolate }
+.it .ph img { transition: transform .5s cubic-bezier(.2,.7,.3,1); filter: saturate(1.05) contrast(1.03) }
+.it .ph::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1; box-shadow: inset 0 0 30px rgba(20,12,0,.28), inset 0 -26px 28px -18px rgba(20,12,0,.4);
+  background: radial-gradient(120% 70% at 25% -10%, rgba(255,255,255,.28), transparent 55%) }
+.it .qty-b { z-index: 2; box-shadow: 0 3px 8px rgba(0,0,0,.25) }
+.it .nm { font-weight: 600 } .it .pr { font-weight: 600; color: var(--brand) }
+.it.noimg { background: linear-gradient(160deg, color-mix(in srgb, var(--brand) 6%, var(--surface)), var(--surface)) }
+.dish-info { display: grid; gap: .6rem }
+.dish-photo { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 21/9; max-height: 230px; box-shadow: 0 14px 30px -14px rgba(30,20,0,.55), 0 2px 4px rgba(30,20,0,.15); isolation: isolate }
+.dish-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.06) contrast(1.04) }
+.dish-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 50px rgba(20,12,0,.3); background: radial-gradient(110% 60% at 20% -10%, rgba(255,255,255,.3), transparent 55%) }
+.dish-desc { color: var(--ink-2); line-height: 1.5 }
+.dish-chips { display: flex; flex-wrap: wrap; gap: .4rem }
+.dish-chips span { font-size: .85rem; padding: .2rem .7rem; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-2) }
+.ar-open { align-self: start; border-radius: 99px }
+
+/* ── floor plan: real tables with chairs ── */
+.tabgrid { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 1rem }
+.tab-tile.seat-tile { border: 1px solid color-mix(in srgb, var(--line) 80%, transparent); border-style: solid; padding: .7rem .7rem .8rem; align-items: stretch; gap: .1rem; text-align: center; min-height: 0; border-radius: 22px;
+  background: radial-gradient(130% 90% at 50% 0%, color-mix(in srgb, var(--surface) 70%, #ece4d6), color-mix(in srgb, var(--surface) 92%, #e4dccd)); box-shadow: var(--shadow); transition: transform .18s, box-shadow .18s }
+@media (hover: hover) { .tab-tile.seat-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift) } }
+.seat-tile .tbl { position: relative; display: block; width: 100%; aspect-ratio: 1.12; margin-bottom: .45rem; --st: var(--free) }
+.seat-tile.wide .tbl { aspect-ratio: 1.5 }
+.seat-tile .top { position: absolute; inset: 20% 22%; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 16%;
+  background: radial-gradient(120% 120% at 30% 15%, #f4e6cf 0%, #e3cba5 52%, #d2b588 100%); box-shadow: 0 0 0 1px rgba(110,80,40,.25), inset 0 1.5px 0 rgba(255,255,255,.75), inset 0 -6px 10px rgba(120,80,30,.18), 0 10px 14px -6px rgba(60,40,10,.38), 0 3px 3px rgba(60,40,10,.18);
+  color: #3b2a14; transition: box-shadow .25s, background .25s }
+.seat-tile.shape-round .top { border-radius: 50% }
+.seat-tile.shape-rect .top { inset: 26% 17% }
+.seat-tile .top .no { font-size: 1.7rem; font-weight: 650; line-height: 1; letter-spacing: -.01em }
+.seat-tile .top small { font-size: .68rem; opacity: .7; font-weight: 600; margin-top: .15rem }
+.seat-tile .chair { position: absolute; width: 15%; height: 11%; border-radius: 40% 40% 28% 28%; background: linear-gradient(180deg, #b9a98f, #9d8c72); box-shadow: 0 2px 3px rgba(50,35,10,.35), inset 0 1px 0 rgba(255,255,255,.4); transition: background .25s }
+.seat-tile.shape-rect .chair, .seat-tile.shape-square .chair { width: 13%; height: 10% }
+.seat-tile .chair.taken { background: linear-gradient(180deg, color-mix(in srgb, var(--st) 80%, #fff), var(--st)) }
+.seat-tile.busy .tbl { --st: var(--busy) } .seat-tile.ready .tbl { --st: var(--ready) } .seat-tile.bill .tbl { --st: var(--bill) } .seat-tile.attention .tbl { --st: var(--attn) }
+.seat-tile.busy .top { box-shadow: 0 0 0 2px color-mix(in srgb, var(--busy) 60%, transparent), inset 0 1.5px 0 rgba(255,255,255,.75), inset 0 -6px 10px rgba(120,80,30,.18), 0 10px 14px -6px rgba(60,40,10,.38) }
+.seat-tile.ready .top { background: radial-gradient(120% 120% at 30% 15%, #e6f4e6, #bfe0c4 60%, #a3cfab); color: #17391f; box-shadow: 0 0 0 2px color-mix(in srgb, var(--ready) 70%, transparent), 0 0 22px color-mix(in srgb, var(--ready) 45%, transparent), inset 0 1.5px 0 rgba(255,255,255,.8), 0 10px 14px -6px rgba(20,60,30,.35) }
+.seat-tile.bill .top { background: radial-gradient(120% 120% at 30% 15%, #fbefd2, #f0d9a0 60%, #e2c27a); box-shadow: 0 0 0 2px color-mix(in srgb, var(--bill) 60%, transparent), inset 0 1.5px 0 rgba(255,255,255,.8), 0 10px 14px -6px rgba(90,60,10,.35) }
+.seat-tile.attention .top { background: radial-gradient(120% 120% at 30% 15%, #fbe4e0, #f0bdb6 60%, #e19a91); color: #4a1410; box-shadow: 0 0 0 2px color-mix(in srgb, var(--attn) 70%, transparent), 0 0 22px color-mix(in srgb, var(--attn) 40%, transparent), 0 10px 14px -6px rgba(90,20,10,.35) }
+.tab-tile.seat-tile.free, .tab-tile.seat-tile.busy, .tab-tile.seat-tile.bill, .tab-tile.seat-tile.ready, .tab-tile.seat-tile.attention { background: radial-gradient(130% 90% at 50% 0%, color-mix(in srgb, var(--surface) 70%, #ece4d6), color-mix(in srgb, var(--surface) 92%, #e4dccd)); border-color: color-mix(in srgb, var(--line) 80%, transparent) }
+.tab-tile.seat-tile.ready, .tab-tile.seat-tile.attention { animation: none }
+.seat-tile .tag { inset-block-start: .6rem; inset-inline-end: .7rem; z-index: 2; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.15) }
+.seat-tile .meta { font-size: .8rem; line-height: 1.25 } .seat-tile .amt { margin-top: .2rem; font-weight: 650; font-size: 1.02rem }
+.seat-tile .free-lbl { color: var(--ink-3); font-weight: 500; font-size: .9rem }
+:root[data-theme=dark] .tab-tile.seat-tile, :root[data-theme=dark] .tab-tile.seat-tile.free, :root[data-theme=dark] .tab-tile.seat-tile.busy, :root[data-theme=dark] .tab-tile.seat-tile.bill, :root[data-theme=dark] .tab-tile.seat-tile.ready, :root[data-theme=dark] .tab-tile.seat-tile.attention { background: radial-gradient(130% 90% at 50% 0%, #232832, #1a1e26) }
+@media (prefers-reduced-motion: reduce) { .it, .it .ph img, .tab-tile.seat-tile { transition: none } }
+
+/* customer payment screen */
+.payscreen { text-align: center; display: grid; gap: .8rem; justify-items: center }
+.payscreen .big-total { font-size: 2.6rem; font-weight: 650; font-variant-numeric: tabular-nums } .payscreen .big-total.xl { font-size: 3.4rem; color: var(--brand) }
+.payscreen .qr-card { background: #fff; padding: .9rem; border-radius: 22px; box-shadow: var(--shadow-lift); line-height: 0 } .payscreen .qr-card svg { width: min(70vw, 320px); height: auto }
+.pay-overlay { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: color-mix(in srgb, var(--bg) 96%, transparent); backdrop-filter: blur(6px) }
+.online-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem }
+.online-card { display: grid; gap: .5rem } .online-card.accepted, .online-card.rejected { opacity: .7 }
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: .2rem }
+.code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: .6rem .8rem; overflow: auto; font-size: .82rem; white-space: pre-wrap }
+
+/* keep the status badge clear of the chairs */
+.seat-tile .tag{top:auto;bottom:6px;right:6px}
+
+.trial-bar{display:block;text-align:center;padding:.3rem .6rem;font-size:.82rem;background:var(--brand-soft);color:var(--brand);text-decoration:none}

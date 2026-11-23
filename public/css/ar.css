@@ -1,0 +1,22 @@
+/* AR / 3D dish viewer */
+.ar-wrap { position: fixed; inset: 0; z-index: 10000; background: #14181d; color: #fff; overflow: hidden; font-family: inherit; }
+.ar-stage { position: absolute; inset: 0; }
+.ar-stage.studio { background: radial-gradient(ellipse at 50% 70%, #5b5148 0%, #2a2e35 55%, #15181d 100%); }
+.ar-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ar-canvas, .ar-mv { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; }
+.ar-canvas:active { cursor: grabbing; }
+.ar-top { position: absolute; inset-inline: 0; top: 0; display: flex; align-items: center; gap: .75rem; padding: max(.75rem, env(safe-area-inset-top)) max(.9rem, env(safe-area-inset-right)) .75rem max(.9rem, env(safe-area-inset-left)); background: linear-gradient(rgba(0,0,0,.45), transparent); pointer-events: none; }
+.ar-top > * { pointer-events: auto; }
+.ar-spacer { flex: 1; }
+.ar-title { display: flex; flex-direction: column; min-width: 0; text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+.ar-title b { font-size: 1.15rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ar-title span { font-size: .9rem; opacity: .85; }
+.ar-btn { width: 3.2rem; height: 3.2rem; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); background: rgba(30,34,40,.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font-size: 1.3rem; display: grid; place-items: center; cursor: pointer; transition: background .15s, transform .1s; }
+.ar-btn:hover { background: rgba(60,66,76,.7); } .ar-btn:active { transform: scale(.94); } .ar-btn.off { opacity: .55; }
+.ar-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ar-side { position: absolute; inset-inline-end: max(.9rem, env(safe-area-inset-right)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: .7rem; }
+.ar-hint { position: absolute; inset-inline: 0; bottom: max(1rem, env(safe-area-inset-bottom)); text-align: center; font-size: .9rem; opacity: .85; text-shadow: 0 1px 6px rgba(0,0,0,.7); padding: 0 1rem; pointer-events: none; }
+.ar-note { position: absolute; inset-inline: 1rem; bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 2.2rem); margin: 0 auto; max-width: 30rem; text-align: center; background: rgba(20,24,29,.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.18); border-radius: .8rem; padding: .6rem .9rem; font-size: .9rem; }
+@media (prefers-reduced-motion: reduce) { .ar-btn { transition: none; } }
+.ar-open { display: inline-flex; align-items: center; gap: .4rem; margin: .5rem 0; }
+.dish-info { margin-bottom: .8rem; }

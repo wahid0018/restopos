@@ -1,0 +1,15 @@
+{
+  "name": "restopos",
+  "version": "1.0.0",
+  "description": "Restaurant POS for India: GST billing, table-tablet ordering, kitchen display, inventory, rewards. Zero dependencies.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true,
+  "repository": "wahid0018/restopos"
+}
